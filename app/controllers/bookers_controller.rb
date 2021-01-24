@@ -1,26 +1,34 @@
 class BookersController < ApplicationController
+
   def index
-    @book = Book.all
+    @books = Book.all
+    @book = Book.new
   end
 
   def show
+    @book = Book.find(params[:id])
   end
 
-  def new
-    @book = Book.new
-  end
-  
+
   def create
-    
-    book = Book.new(book_params)
-    book.save
-    redirect_to bookers_path(book.id)
-    
+    @book = Book.new(book_params)
+    if @book.save
+      redirect_to booker_path(@book.id)
+    else
+      render action: :index
+    end
   end
 
   def edit
+    @book = Book.find(params[:id])
   end
-  
+
+  def destroy
+    book = Book.find(params[:id])
+    book.destroy
+    redirect_to bookers_path
+  end
+
   private
   def book_params
     params.require(:book).permit(:title, :body)
