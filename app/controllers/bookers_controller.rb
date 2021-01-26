@@ -16,15 +16,16 @@ class BookersController < ApplicationController
      flash[:notice] = "Book was successfully created."
      redirect_to booker_path(@book.id)
     else
-     render 'index'
-    end  
+      @books = Book.all
+     render :index
+    end
   end
 
 
   def edit
     @book = Book.find(params[:id])
   end
-  
+
   def update
     @book = Book.find(params[:id])
     @book.update(book_params)
@@ -33,7 +34,7 @@ class BookersController < ApplicationController
      redirect_to booker_path(@book.id)
     else
      render bookers_path
-    end  
+    end
   end
 
   def destroy
