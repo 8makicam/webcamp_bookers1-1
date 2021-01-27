@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :bookers
-  root to: "bookers#top"
-  get "books" => "bookers#index"
+  resources :books
+  root to: "books#top"
+  get "books" => "books#index"
 
 end

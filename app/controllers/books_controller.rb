@@ -1,4 +1,4 @@
-class BookersController < ApplicationController
+class BooksController < ApplicationController
 
   def index
     @books = Book.all
@@ -14,7 +14,7 @@ class BookersController < ApplicationController
     @book = Book.new(book_params)
     if @book.save
      flash[:notice] = "Book was successfully created."
-     redirect_to booker_path(@book.id)
+     redirect_to books_path(@book.id)
     else
       @books = Book.all
      render :index
@@ -31,16 +31,16 @@ class BookersController < ApplicationController
     @book.update(book_params)
     if @book.save
      flash[:notice] = "Book was successfully created."
-     redirect_to booker_path(@book.id)
+     redirect_to books_path(@book.id)
     else
-     render bookers_path
+     render books_path
     end
   end
 
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    redirect_to bookers_path
+    redirect_to books_path
   end
 
   private
